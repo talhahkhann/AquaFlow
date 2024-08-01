@@ -1,7 +1,9 @@
-
+import 'package:ecomproject/screens/user-panel/AllCategories.Screen.dart';
 import 'package:ecomproject/utils/AppConstants.dart';
 import 'package:ecomproject/widgets/Banner.Widget.dart';
+import 'package:ecomproject/widgets/Category.Widget.dart';
 import 'package:ecomproject/widgets/CustomDrawer.Widget.dart';
+import 'package:ecomproject/widgets/FlashSale.Widget.dart';
 import 'package:ecomproject/widgets/Heading.Widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,31 +17,46 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: AppConstant.appSecondaryColor,
+          statusBarColor: AppConstant.appbarColor,
           statusBarIconBrightness: Brightness.light,
         ),
-        backgroundColor: AppConstant.appMainColor,
-        title: Text(AppConstant.appMainName),
+        backgroundColor: AppConstant.appbarColor,
+        title: Text(
+          AppConstant.appMainName,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
-        
       ),
       drawer: DrawerWidget(),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Container(
-          child: Column(
-            children: [
-              SizedBox(height: Get.height/90.0,),
-           
+            child: Column(
+          children: [
+            SizedBox(
+              height: Get.height / 90.0,
+            ),
 
-              //Banners
-              BannerWidget(),
-              HeadingWidget( headingtitle: 'Categories', headingsubtitle: 'According to your budget', onTap: (){
+            //Banners
+            BannerWidget(),
+            HeadingWidget(
+              headingtitle: 'Categories',
+              headingsubtitle: 'According to your budget',
+              onTap: () {
+                Get.to(() => AllCategoriesScreen());
+              },
+              buttontext: 'See More >',
+            ),
+            CategoriesWidget(),
 
-              },buttontext: 'See More >',),
-            ],
-          )
-        ),
+            HeadingWidget(
+                headingtitle: 'Flash Sale',
+                headingsubtitle: 'According to your budget ',
+                onTap: () {},
+                buttontext: 'See More >'),
+            FlashSaleWidget()
+          ],
+        )),
       ),
     );
   }

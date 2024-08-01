@@ -164,7 +164,7 @@ class _SingupScreenState extends State<SingupScreen> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30.0),
-                      color: Colors.blue,
+                      color: AppConstant.appbarColor,
                     ),
                     width: Get.width / 1.2,
                     height: Get.height / 12,
@@ -182,16 +182,23 @@ class _SingupScreenState extends State<SingupScreen> {
                               city.isEmpty ||
                               password.isEmpty ||
                               password.isEmpty) {
-                            Get.snackbar('Error', 'Please Enter All Details',snackPosition: SnackPosition.BOTTOM,backgroundColor: AppConstant.appbarColor,colorText: AppConstant.appMainColor);
+                            Get.snackbar('Error', 'Please Enter All Details',
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: AppConstant.appbarColor,
+                                colorText: AppConstant.appMainColor);
                           } else {
                             UserCredential? userCredential =
                                 await singUpController.singUpMethod(name, email,
                                     phone, city, password, userDeviceToken);
-                                    if(userCredential!=null){
-                                        Get.snackbar('Verification email Sent', 'Please Check your email',snackPosition: SnackPosition.BOTTOM,backgroundColor: AppConstant.appbarColor,colorText: AppConstant.appMainColor);
-                                        FirebaseAuth.instance.signOut();
-                                        Get.offAll(()=>SinginScreen);
-                                    }
+                            if (userCredential != null) {
+                              Get.snackbar('Verification email Sent',
+                                  'Please Check your email',
+                                  snackPosition: SnackPosition.BOTTOM,
+                                  backgroundColor: AppConstant.appbarColor,
+                                  colorText: AppConstant.appMainColor);
+                              FirebaseAuth.instance.signOut();
+                              Get.offAll(() => SinginScreen);
+                            }
                           }
                         },
                         icon: FaIcon(

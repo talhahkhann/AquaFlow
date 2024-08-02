@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecomproject/screens/user-panel/ProductDetail.Screen.dart';
 import 'package:ecomproject/utils/AppConstants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_card/image_card.dart';
 
-import '../../models/Category.Model.dart';
 import '../../models/Product.Model.dart';
 
 class AllProductsScreen extends StatefulWidget {
@@ -80,22 +80,29 @@ class _AllProductsScreen extends State<AllProductsScreen> {
                     );
                     return Row(
                       children: [
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Container(
-                            child: FillImageCard(
-                              borderRadius: 15.0,
-                              width: Get.width / 2.3,
-                              heightImage: Get.height / 10,
-                              imageProvider: CachedNetworkImageProvider(
-                                productModel.productImages[0],
-                              ),
-                              title: Center(
-                                child: Text(
-                                  overflow: TextOverflow.ellipsis,
-                                  productModel.productName,
-                                  style: TextStyle(fontSize: 12.0),
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => ProductDetailScreen(
+                                productModel: productModel));
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Container(
+                              child: FillImageCard(
+                                borderRadius: 15.0,
+                                width: Get.width / 2.3,
+                                heightImage: Get.height / 10,
+                                imageProvider: CachedNetworkImageProvider(
+                                  productModel.productImages[0],
                                 ),
+                                title: Center(
+                                  child: Text(
+                                    overflow: TextOverflow.ellipsis,
+                                    productModel.productName,
+                                    style: TextStyle(fontSize: 12.0),
+                                  ),
+                                ),
+                                footer: Text('Rs ${productModel.fullPrice}'),
                               ),
                             ),
                           ),

@@ -2,6 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecomproject/screens/user-panel/ProductDetail.Screen.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -73,7 +74,8 @@ class AllProductsWidget extends StatelessWidget {
                 return Row(
                   children: [
                     GestureDetector(
-                      onTap: () => Get.to(() {}),
+                      onTap: () => Get.to(() =>
+                          ProductDetailScreen(productModel: productModel)),
                       child: Padding(
                         padding: EdgeInsets.all(6.0),
                         child: Container(

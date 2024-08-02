@@ -1,4 +1,5 @@
 import 'package:ecomproject/screens/user-panel/AllCategories.Screen.dart';
+import 'package:ecomproject/screens/user-panel/AllFlashSaleProducts.Sceen.dart';
 import 'package:ecomproject/utils/AppConstants.dart';
 import 'package:ecomproject/widgets/Banner.Widget.dart';
 import 'package:ecomproject/widgets/Category.Widget.dart';
@@ -8,6 +9,9 @@ import 'package:ecomproject/widgets/Heading.Widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+
+import '../../widgets/AllProduct.Widget.dart';
+import 'AllProducts.Screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -52,9 +56,19 @@ class MainScreen extends StatelessWidget {
             HeadingWidget(
                 headingtitle: 'Flash Sale',
                 headingsubtitle: 'According to your budget ',
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => AllFlashSaleProductsScreen());
+                },
                 buttontext: 'See More >'),
-            FlashSaleWidget()
+            FlashSaleWidget(),
+            HeadingWidget(
+                headingtitle: 'All Products',
+                headingsubtitle: 'According to your budget',
+                onTap: () {
+                  Get.to(() => AllProductsScreen());
+                },
+                buttontext: 'See More >'),
+            AllProductsWidget(),
           ],
         )),
       ),
